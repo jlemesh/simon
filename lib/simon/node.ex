@@ -17,6 +17,11 @@ defmodule Simon.Node do
     GenServer.call(__MODULE__, {:read_log, idx, count})
   end
 
+  @spec stop :: :ok
+  def stop() do
+    GenServer.stop(__MODULE__)
+  end
+
   ### Callbacks
 
   defmodule State do

@@ -1,5 +1,5 @@
 defmodule SimonTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: false
   doctest Simon
 
   test "greets the world" do
@@ -7,14 +7,13 @@ defmodule SimonTest do
   end
 
   test "write log" do
-    start_supervised(Simon.Node)
     :ok = Simon.Node.write_log(["one"])
     {:ok, log} = Simon.Node.read_log(0, 5)
     assert log == ["one"]
+    Simon.Node.stop()
   end
 
   test "replicate" do
-    start_supervised(Simon.Node)
     :ok = LocalCluster.start()
     nodes = LocalCluster.start_nodes("sim", 1)
     [n1] = nodes
@@ -59,10 +58,10 @@ defmodule SimonTest do
     assert log == ["two", "three", "four", "five"]
 
     :ok = LocalCluster.stop()
+    Simon.Node.stop()
   end
 
   test "should replicate on top" do
-    start_supervised(Simon.Node)
     :ok = LocalCluster.start()
     nodes = LocalCluster.start_nodes("sim", 1)
     [n1] = nodes
@@ -84,5 +83,6 @@ defmodule SimonTest do
     assert log == ["zero", "one"]
 
     :ok = LocalCluster.stop()
+    Simon.Node.stop()
   end
 end
