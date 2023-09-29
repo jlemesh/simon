@@ -35,15 +35,15 @@ defmodule Simon.Replicator do
     :ok = :syn.join(:simon, :node, self())
     Logger.debug("Started replicator")
     state = %State{simon: nil, count: 0}
-    #schedule_work() # Schedule work to be performed on start
     {:ok, state}
   end
 
   @impl GenServer
   def handle_call({:start_replicate, node}, _from, state) do
     :pong = Node.ping(node)
+    GenServer.call(Simon.Node, :reset_log)
     Logger.debug("Replication started")
-    schedule_work()
+    schedule_replicate()
     {:reply, :ok, %State{state | simon: node}}
   end
 
@@ -54,16 +54,14 @@ defmodule Simon.Replicator do
   end
 
   @impl GenServer
-  def handle_info(:work, state) do
-    # Do the desired work here
-
+  def handle_info(:replicate, state) do
     if state.simon != nil do
       Logger.debug("Replicating")
       {:ok, log} = GenServer.call({Simon.Node, state.simon}, {:read_log, state.count, 2})
       Logger.debug(log)
       len = length(log)
       :ok = GenServer.call(Simon.Node, {:write_log, log})
-      schedule_work() # Reschedule once more
+      schedule_replicate() # Reschedule again
       {:noreply, %State{state | count: state.count + len}}
     else
       Logger.debug("Replication stopped")
@@ -71,7 +69,7 @@ defmodule Simon.Replicator do
     end
   end
 
-  defp schedule_work() do
-    Process.send_after(self(), :work, 1 * 1000) # In 1 seconds
+  defp schedule_replicate() do
+    Process.send_after(self(), :replicate, 1 * 1000) # In 1 seconds
   end
 end

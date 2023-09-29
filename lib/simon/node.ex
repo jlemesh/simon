@@ -54,4 +54,9 @@ defmodule Simon.Node do
     log = Enum.slice(state.log, idx, count)
     {:reply, {:ok, log}, state}
   end
+
+  @impl GenServer
+  def handle_call(:reset_log, _from, state) do
+    {:reply, :ok, %State{state | log: []}}
+  end
 end

@@ -2,18 +2,14 @@ defmodule SimonTest do
   use ExUnit.Case, async: false
   doctest Simon
 
-  test "greets the world" do
-    assert Simon.hello() == :world
-  end
-
-  test "write log" do
+  test "should write to log" do
     :ok = Simon.Node.write_log(["one"])
     {:ok, log} = Simon.Node.read_log(0, 5)
     assert log == ["one"]
     Simon.Node.stop()
   end
 
-  test "replicate" do
+  test "should replicate" do
     :ok = LocalCluster.start()
     nodes = LocalCluster.start_nodes("sim", 1)
     [n1] = nodes
@@ -61,7 +57,7 @@ defmodule SimonTest do
     Simon.Node.stop()
   end
 
-  test "should replicate on top" do
+  test "should reset log before replicating" do
     :ok = LocalCluster.start()
     nodes = LocalCluster.start_nodes("sim", 1)
     [n1] = nodes
@@ -71,7 +67,7 @@ defmodule SimonTest do
 
     :ok = Simon.Replicator.start_replicate(n1)
     {:ok, log} = Simon.Node.read_log(0, 5)
-    assert log == ["zero"]
+    assert log == []
 
     :ok = GenServer.call({Simon.Node, n1}, {:write_log, ["one"]})
     {:ok, log} = GenServer.call({Simon.Node, n1}, {:read_log, 0, 5})
@@ -80,7 +76,7 @@ defmodule SimonTest do
     Process.sleep(2000)
 
     {:ok, log} = Simon.Node.read_log(0, 5)
-    assert log == ["zero", "one"]
+    assert log == ["one"]
 
     :ok = LocalCluster.stop()
     Simon.Node.stop()
