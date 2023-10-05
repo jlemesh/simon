@@ -25,23 +25,26 @@ mix release
 env RELEASE_DISTRIBUTION=name RELEASE_NODE=aaa@127.0.0.1 SIMON_PORT=9000 _build/dev/rel/sim/bin/sim start
 
 # read node A log, should be empty
-curl http://localhost:9000/read_log?idx=0 && echo
+curl http://localhost:9000/read_log?idx=0&count=5 && echo
 
 # write an entry to node A log
 curl -X PUT http://localhost:9000/write_log -H 'Content-Type: application/json' -d '{"msg":["two", "three"]}' && echo
 
 # read node A log, should have the entries we've just added
-curl http://localhost:9000/read_log?idx=0 && echo
+curl http://localhost:9000/read_log?idx=0&count=5 && echo
 
 # run node B
 env RELEASE_DISTRIBUTION=name RELEASE_NODE=bbb@127.0.0.1 SIMON_PORT=9001 _build/dev/rel/sim/bin/sim start
 
 # read node B log, should be empty
-curl http://localhost:9001/read_log?idx=0 && echo
+curl http://localhost:9001/read_log?idx=0&count=5 && echo
 
 # tell node B to start replicating from node A
 curl -X PUT http://localhost:9001/start_replicate -H 'Content-Type: application/json' -d '{"node":"aaa@127.0.0.1"}' && echo
 
 # read node B log, should have the entries of node A
-curl http://localhost:9001/read_log?idx=0 && echo
+curl http://localhost:9001/read_log?idx=0&count=5 && echo
+
+# tell node B to stop replicating
+curl http://localhost:9001/stop_replicate && echo
 ``````

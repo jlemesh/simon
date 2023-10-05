@@ -41,16 +41,16 @@ defmodule Simon.Replicator do
   @impl GenServer
   def handle_call({:start_replicate, node}, _from, state) do
     :pong = Node.ping(node)
-    GenServer.call(Simon.Node, :reset_log)
+    :ok = GenServer.call(Simon.Node, :reset_log)
     Logger.debug("Replication started")
     schedule_replicate()
-    {:reply, :ok, %State{state | simon: node}}
+    {:reply, :ok, %State{state | simon: node, count: 0}}
   end
 
   @impl GenServer
   def handle_call(:stop_replicate, _from, state) do
     Logger.debug("Replication stopping")
-    {:reply, :ok, %State{state | simon: nil}}
+    {:reply, :ok, %State{state | simon: nil, count: 0}}
   end
 
   @impl GenServer

@@ -55,9 +55,9 @@ defmodule Simon.RPC do
 
   # Call it as
   # ```
-  # curl -X PUT http://localhost:9000/stop_replicate && echo
+  # curl http://localhost:9000/stop_replicate && echo
   # '''
-  put "/stop_replicate" do
+  get "/stop_replicate" do
     Simon.Replicator.stop_replicate()
     respond_answer_json(conn, %{"Replicate" => "off"})
   end
