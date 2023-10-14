@@ -24,3 +24,7 @@ simon-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+/tla/states
+Simon.out
+/.vscode
