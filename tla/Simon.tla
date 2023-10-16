@@ -57,7 +57,7 @@ Init ==
 
 Next == \E s, n \in Nodes : WriteLog(n) \/ StartReplicate(n) \/ StopReplicate(n) \/ Replicate(s, n)
 
-Spec == Init /\ [][Next]_<<log, simon, requests>>
+Spec == Init /\ [][Next]_<<log, simon, requests>> /\ WF_<<log, simon, requests>>(Next)
 
 Consistent == \A s, n \in Nodes: IF simon[n] = s THEN log[s] = log[n] ELSE TRUE
 
