@@ -25,7 +25,7 @@ mix release
 env RELEASE_DISTRIBUTION=name RELEASE_NODE=aaa@127.0.0.1 SIMON_PORT=9000 _build/dev/rel/sim/bin/sim start
 
 # read node A log, should be empty
-curl http://localhost:9000/read_log?idx=0&count=5 && echo
+curl http://localhost:9000/read && echo
 
 # write an entry to node A log
 curl -X PUT http://localhost:9000/write_log -H 'Content-Type: application/json' -d '{"msg":["two", "three"]}' && echo

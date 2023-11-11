@@ -24,42 +24,21 @@ defmodule Simon.RPC do
 
   # Call it as:
   # ```
-  # curl http://localhost:9000/read_log?idx=0&count=2 && echo
+  # curl http://localhost:9000/read && echo
   # '''
-  get "/read_log" do
-    #conn = fetch_query_params(conn)
-    %{"idx" => idx, "count" => count} = conn.query_params
-    {:ok, log} = Simon.Node.read_log(String.to_integer(idx), String.to_integer(count))
-    respond_answer_json(conn, %{"Simon says" => log})
+  get "/read" do
+    {:ok, v} = Simon.Node.read()
+    respond_answer_json(conn, %{"Simon says" => v})
   end
 
   # Call it as
   # ```
-  # curl -X PUT http://localhost:9000/write_log -H 'Content-Type: application/json' -d '{"msg":["great"]}' && echo
+  # curl -X PUT http://localhost:9000/write -H 'Content-Type: application/json' -d '{"msg":["great"]}' && echo
   # '''
-  put "/write_log" do
+  put "/write" do
     %{"msg" => msg} = conn.body_params
-    :ok = Simon.Node.write_log(msg)
+    :ok = Simon.Node.write(msg)
     respond_answer_json(conn, %{"Write" => "ok"})
-  end
-
-  # Call it as
-  # ```
-  # curl -X PUT http://localhost:9000/start_replicate -H 'Content-Type: application/json' -d '{"node":"aaa@127.0.0.1"}' && echo
-  # '''
-  put "/start_replicate" do
-    %{"node" => node} = conn.body_params
-    :ok = Simon.Replicator.start_replicate(String.to_atom(node))
-    respond_answer_json(conn, %{"Replicate" => node})
-  end
-
-  # Call it as
-  # ```
-  # curl http://localhost:9000/stop_replicate && echo
-  # '''
-  get "/stop_replicate" do
-    Simon.Replicator.stop_replicate()
-    respond_answer_json(conn, %{"Replicate" => "off"})
   end
 
   # Fallback handler when there was no match
