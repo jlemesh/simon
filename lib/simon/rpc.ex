@@ -27,18 +27,18 @@ defmodule Simon.RPC do
   # curl http://localhost:9000/read && echo
   # '''
   get "/read" do
-    {:ok, v} = Simon.Node.read()
-    respond_answer_json(conn, %{"Simon says" => v})
+    v = Simon.Node.read()
+    respond_answer_json(conn, v)
   end
 
   # Call it as
   # ```
-  # curl -X PUT http://localhost:9000/write -H 'Content-Type: application/json' -d '{"msg":["great"]}' && echo
+  # curl -X PUT http://localhost:9000/write -H 'Content-Type: application/json' -d '{"msg":"great"}' && echo
   # '''
   put "/write" do
     %{"msg" => msg} = conn.body_params
     :ok = Simon.Node.write(msg)
-    respond_answer_json(conn, %{"Write" => "ok"})
+    respond_answer_json(conn, "ok")
   end
 
   # Fallback handler when there was no match

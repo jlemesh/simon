@@ -12,11 +12,16 @@ defmodule SimonTest do
 
     Simon.Node.write("a")
 
-    LocalCluster.stop_nodes([n1])
-
     v = Simon.Node.read()
     assert v == "a"
 
-    :ok = LocalCluster.stop()
+    Simon.Node.write("b")
+
+    LocalCluster.stop_nodes([n1])
+
+    v = Simon.Node.read()
+    assert v == "b"
+
+    LocalCluster.stop_nodes([n2, n3])
   end
 end

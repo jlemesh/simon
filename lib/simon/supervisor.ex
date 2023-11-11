@@ -10,10 +10,10 @@ defmodule Simon.Supervisor do
           http_opts = [port: String.to_integer(http_port)]
           [{Plug.Cowboy, scheme: :http, plug: Simon.RPC, options: http_opts}]
       end
-    is_writer = System.get_env("SIMON_WRITER") == "1"
+      discovery = System.get_env("SIMON_DISCOVERY", "")
     children =
       [
-        %{id: Simon.Node, start: {Simon.Node, :start_link, [is_writer]}},
+        %{id: Simon.Node, start: {Simon.Node, :start_link, [discovery]}},
       ] ++ http
 
     Supervisor.start_link(children, strategy: :one_for_all)
