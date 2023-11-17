@@ -22,6 +22,17 @@ defmodule SimonTest do
     v = Simon.Node.read()
     assert v == "b"
 
+    nodes1 = LocalCluster.start_nodes("sim1", 1)
+
+    [n4] = nodes1
+
+    assert Node.ping(n4) == :pong
+
+    Simon.Node.write("c")
+
+    v = Simon.Node.read()
+    assert v == "c"
+
     LocalCluster.stop_nodes([n2, n3])
   end
 end
