@@ -27,7 +27,7 @@ defmodule Simon.RPC do
   # curl http://localhost:9000/read && echo
   # '''
   get "/read" do
-    v = Simon.Node.read()
+    v = Simon.Client.read()
     respond_answer_json(conn, v)
   end
 
@@ -36,8 +36,11 @@ defmodule Simon.RPC do
   # curl -X PUT http://localhost:9000/write -H 'Content-Type: application/json' -d '{"msg":"great"}' && echo
   # '''
   put "/write" do
+    #Logger.debug("111")
     %{"msg" => msg} = conn.body_params
-    :ok = Simon.Node.write(msg)
+    #Logger.debug("222")
+    :ok = Simon.Client.write(msg)
+    #Logger.debug("333")
     respond_answer_json(conn, "ok")
   end
 

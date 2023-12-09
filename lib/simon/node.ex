@@ -21,114 +21,170 @@ defmodule Simon.Node do
   ### Callbacks
 
   defmodule State do
-    @enforce_keys [:reg, :discovery, :wsn, :reqsn, :i, :lw]
-    defstruct reg: [], discovery: "", wsn: 0, reqsn: 0, i: nil, lw: 0
+    @enforce_keys [:discovery, :view_num, :config, :replica_num, :status, :op_num, :log, :commit_num, :client_table, :prepare_ok_buf, :store, :log_buf]
+    defstruct discovery: "", view_num: 0, config: [], replica_num: 0, status: "", op_num: 0, log: [], commit_num: 0, client_table: %{}, prepare_ok_buf: %{}, store: [], log_buf: []
 
     @typedoc """
     This is the state of our node.
     """
     @type t() :: %__MODULE__{
-      reg: List.t(),
       discovery: String.t(),
-      wsn: Integer.t(),
-      reqsn: Integer.t(),
-      i: Atom.t(),
-      lw: Integer.t()
+      view_num: Integer.t(),
+      config: List.t(),
+      replica_num: Integer.t(),
+      status: String.t(),
+      op_num: Integer.t(),
+      log: List.t(),
+      commit_num: Integer.t(),
+      client_table: Map.t(),
+      prepare_ok_buf: Map.t(),
+      store: List.t(),
+      log_buf: [],
     }
   end
 
+
   @impl GenServer
   def init(arg) do
-    :ok = :syn.join(:simon, :node, self())
+    #Logger.configure(format: "[$level] $metadata$message\n", metadata: [:module, :function, :my_id])
+    :ok = Logger.metadata [pid: self()]
+    Logger.metadata [type: "replica"]
     discovery = elem(arg, 0)
     if discovery != "" do
       :pong = Node.ping(String.to_atom(discovery))
     end
-    state = %State{reg: [], discovery: discovery, wsn: 0, reqsn: 0, i: self(), lw: 0}
-    {:ok, state}
+    # Process.sleep(2000)
+    # config = for {pid, _} <- :syn.members(:simon, :replica), do: pid
+    # Logger.debug(config: config)
+    # :ok = :syn.register(:simon, length(config) + 1, self())
+    replica_num = register()
+    :ok = :syn.join(:simon, :replica, self())
+    {:ok, %State{
+      discovery: discovery,
+      view_num: 1,
+      config: [],
+      replica_num: replica_num,
+      status: "recovering",
+      op_num: 0,
+      log: [],
+      commit_num: 0,
+      client_table: Map.new(),
+      prepare_ok_buf: Map.new(),
+      store: [],
+      log_buf: [],
+    }}
   end
 
   @impl GenServer
-  def handle_call({:init_write, v}, _from, state) do
-    replies = broadcast({:write_req, state.reqsn + 1}) ++ [{:ack_write_req, state.reqsn + 1, state.wsn, state.i}]
-    max = get_max(replies)
-    msn = elem(max, 2) + 1
-    mlw = elem(max, 3)
-
-    min = get_min(replies)
-    minsn = elem(min, 2)
-    Logger.debug("minsn: #{minsn}")
-    Logger.debug("msn: #{msn}")
-    reqsn = if minsn < msn - 1 do
-      Logger.debug("propagate")
-      if mlw == state.i do
-        r = propagate(minsn, state)
-        state.reqsn + 1 + length(r)
-      else
-        GenServer.call(mlw, {:propagate, minsn})
-      end
-    else
-      state.reqsn
-    end
-
-    broadcast({:write, reqsn, v, msn, state.i})
-    {:reply, :ok, %State{state | reqsn: reqsn, reg: state.reg ++ [v], lw: state.i, wsn: msn}} # do not send :write to itself, write directly to reg
-  end
-
-  @impl GenServer
-  def handle_call({:init_read}, _from, state) do
-    replies = broadcast({:read_req, state.reqsn + 1}) ++ [{:ack_read_req, state.reqsn + 1, state.wsn, state.lw, state.reg}]
-    max = get_max(replies) # do not send :read to itself, just add data directly to the list
-    msn = elem(max, 2)
-    mlw = elem(max, 3)
-    v = List.last(elem(max, 4))
-
-    min = get_min(replies)
-    minsn = elem(min, 2)
-    Logger.debug("minsn: #{minsn}")
-    Logger.debug("msn: #{msn}")
-    reqsn = if minsn < msn - 1 do
-      Logger.debug("propagate")
-      if mlw == state.i do
-        r = propagate(minsn, state)
-        state.reqsn + 1 + length(r)
-      else
-        GenServer.call(mlw, {:propagate, minsn})
-      end
-    else
-      state.reqsn
-    end
-    broadcast({:write, reqsn, v, msn, mlw})
-    if state.wsn < msn do
-      {:reply, {:ok, v}, %State{state | reqsn: reqsn, reg: state.reg ++ [v]}}
-    else
-      {:reply, {:ok, v}, %State{state | reqsn: reqsn}}
+  def handle_call({:write, v, client_id, req_num}, from, state) do
+    Logger.debug(from: from)
+    Logger.debug("write")
+    case Map.get(state.client_table, client_id) do
+      nil -> process_write(state, v, client_id, req_num, from)
+      {req_num, resp} -> respond_existing(req_num, resp, state, v, client_id, req_num, from)
     end
   end
 
   @impl GenServer
-  def handle_call({:write, reqsn, v, wsn, lw}, _from, state) do
-    if wsn > state.wsn do # replaced >= with > for list
-      {:reply, {:ack_write, reqsn}, %State{state | reg: state.reg ++ [v], wsn: wsn, lw: lw}}
+  def handle_call({:get_state, view_num, op_num, _node}, _from, state) do
+    if state.status == "normal" && state.view_num == view_num do
+      {:reply, {:new_state, view_num, Enum.take(state.log, op_num - length(state.log)), state.commit_num}}
     else
-      {:reply, {:ack_write, reqsn}, state}
+      {:stop, :misconfig, state}
     end
   end
 
   @impl GenServer
-  def handle_call({:read_req, reqsn}, _from, state) do
-    {:reply, {:ack_read_req, reqsn, state.wsn, state.lw, state.reg}, state}
+  def handle_cast({:prepare, view_num, req, op_num, _commit_num}, state) do
+    if state.op_num < op_num - 1 do
+      new_op_num = state.commit_num
+      log = List.delete_at(state.log, op_num - length(state.log))
+      # put to log buf
+      log_buf = state.log_buf ++ [req]
+      # request missing data
+      config = for {pid, _} <- :syn.members(:simon, :replica), pid != self(), do: pid
+      GenServer.cast(Enum.random(config), {:get_state, state.view_num, new_op_num, self()})
+      {:noreply, %State{state |
+        op_num: new_op_num,
+        log: log,
+        log_buf: log_buf,
+      }}
+    else
+      client_id = Map.get(state.client_table, elem(req, 1)) # {{:write, v}, client_id, req_num, from}
+      :ok = cast_primary(state, {:prepare_ok, view_num, op_num, state.replica_num})
+      {:noreply, %State{state |
+        client_table: Map.put(state.client_table, client_id, req),
+        log: state.log ++ state.log_buf ++ [req],
+        op_num: op_num
+      }}
+    end
+  end
+
+  def handle_cast({:new_state, _view_num, log, op_num, commit_num}, state) do
+    {:noreply, %State{state |
+      op_num: op_num,
+      log: state.log ++ log,
+      commit_num: commit_num,
+    }}
   end
 
   @impl GenServer
-  def handle_call({:write_req, reqsn}, _from, state) do
-    {:reply, {:ack_write_req, reqsn, state.wsn, state.lw}, state}
+  def handle_cast({:prepare_ok, view_num, op_num, replica_num}, state) do
+    buf_mod = Map.put(
+      state.prepare_ok_buf,
+      state.op_num,
+      state.prepare_ok_buf[op_num] ++ [{:prepare_ok, view_num, op_num, replica_num}]
+    )
+    Logger.debug(len: length(buf_mod[op_num]))
+    if length(buf_mod[op_num]) > :syn.member_count(:simon, :replica) / 2 do
+      req = Enum.at(state.log, op_num - 1) # {{:write, v}, client_id, req_num, from}
+      Logger.debug(req: req, log: state.log, op_num: op_num)
+      resp = {:reply, state.view_num, elem(req, 2), 0}
+      client_id = Map.get(state.client_table, elem(req, 1)) # {{:write, v}, client_id, req_num, from}
+      GenServer.reply(
+        elem(req, 3),
+        resp
+      )
+      {:noreply, %State{state |
+        prepare_ok_buf: buf_mod,
+        commit_num: state.commit_num + 1,
+        client_table: Map.put(state.client_table, client_id, resp),
+        store: commit_sm(elem(req, 0), state)
+      }}
+    else
+      {:noreply, %State{state | prepare_ok_buf: buf_mod}}
+    end
   end
 
-  @impl GenServer
-  def handle_call({:propagate, minsn}, _from, state) do
-    r = propagate(minsn, state)
-    {:reply, state.reqsn + length(r), %State{state | reqsn: state.reqsn + length(r)}}
+  def respond_existing(req_num, resp, state, v, client_id, req_num, from) do
+    cond do
+      req_num < state.req_num -> {:noreply, state}
+      req_num == state.req_num -> {:reply, resp, state}
+      req_num > state.req_num ->
+        process_write(state, v, client_id, req_num, from)
+    end
+  end
+
+  def process_write(state, v, client_id, req_num, from) do
+    op_num = state.op_num + 1
+    log = state.log ++ [{{:write, v}, client_id, req_num, from}]
+    broadcast2({
+      :prepare,
+      state.view_num,
+      {:write, v, client_id, req_num},
+      op_num,
+      state.commit_num
+    })
+    {:noreply, %State{state |
+      client_table: Map.put(state.client_table, client_id, {req_num, nil}),
+      log: log,
+      op_num: op_num,
+      prepare_ok_buf: Map.put(state.prepare_ok_buf, op_num, [])
+    }}
+  end
+
+  def commit_sm({:write, v}, state) do
+    state.store ++ [v]
   end
 
   @impl GenServer
@@ -138,10 +194,32 @@ defmodule Simon.Node do
     {:noreply, state}
   end
 
+  def cast_primary(state, msg) do
+    config = for {pid, _} <- :syn.members(:simon, :replica), do: pid
+    Logger.debug(config: config)
+    n = length(config)
+    primary_num = rem(state.view_num, n)
+    Logger.debug(n: n, primary_num: primary_num)
+    {primary, _meta} = :syn.lookup(:simon, primary_num)
+    Logger.debug(primary: node(primary))
+    GenServer.cast(primary, msg)
+  end
+
+  def register() do
+    config = for {pid, _} <- :syn.members(:simon, :replica), do: pid
+    Logger.debug(config: config)
+    case :syn.register(:simon, length(config) + 1, self()) do
+      :ok -> length(config) + 1
+      {:error, :taken} ->
+        Process.sleep(500)
+        register()
+    end
+  end
+
   def broadcast(msg) do
     Logger.debug("broadcast")
     self = self()
-    members = for {pid, _} <- :syn.members(:simon, :node), pid != self, do: pid
+    members = for {pid, _} <- :syn.members(:simon, :replica), pid != self, do: pid
     replies = for pid <- members, do: send_msg(pid, msg)
 
     # will loop infinitely until there are enough replies
@@ -150,6 +228,13 @@ defmodule Simon.Node do
     else
       replies
     end
+  end
+
+  def broadcast2(msg) do
+    Logger.debug("broadcast2")
+    self = self()
+    members = for {pid, _} <- :syn.members(:simon, :replica), pid != self, do: pid
+    for pid <- members, do: GenServer.cast(pid, msg)
   end
 
   def send_msg(pid, msg) do

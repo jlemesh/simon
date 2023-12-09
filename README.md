@@ -1,9 +1,13 @@
 # Simon
 
-Simon is a MWMR Atomic Register. Each node has RPC API that has following commands:
+Simon is a VSR.
 
-- read: reads reg value from node
-- write: writes a value to node
+## TODOs
+
+- fix syn registration (sometimes one node fails to register)
+- view change
+- reconfiguration
+- 
 
 ## Tests
 
@@ -17,7 +21,7 @@ mix test
 # build binary
 mix release
 
-# run node A 
+# run node A with client
 env RELEASE_DISTRIBUTION=name RELEASE_NODE=aaa@127.0.0.1 SIMON_PORT=9000 _build/dev/rel/sim/bin/sim start
 
 # run node B
@@ -30,7 +34,7 @@ env RELEASE_DISTRIBUTION=name RELEASE_NODE=ccc@127.0.0.1 SIMON_PORT=9002 SIMON_D
 curl http://localhost:9000/read && echo
 
 # write an entry to node A reg
-curl -X PUT http://localhost:9000/write -H 'Content-Type: application/json' -d '{"msg":"a}' && echo
+curl -X PUT http://localhost:9000/write -H 'Content-Type: application/json' -d '{"msg":"a"}' && echo
 
 # read node A reg, should have the value we've just added
 curl http://localhost:9000/read && echo
