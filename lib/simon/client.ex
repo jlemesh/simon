@@ -110,11 +110,8 @@ defmodule Simon.Client do
     req_num = state.request_number + 1
     config = for {pid, _} <- :syn.members(:simon, :replica), do: pid
     Logger.debug(config: config)
-    n = length(config)
-    primary_num = rem(state.view_number, n)
-    Logger.debug(n: n, primary_num: primary_num)
-    {primary, _meta} = :syn.lookup(:simon, primary_num)
-    Logger.debug(primary: node(primary))
+    #n = length(config)
+    primary = get_primary(state.view_number)
     resp = GenServer.call(primary, {:write, v, state.client_id, req_num})
     {:reply, resp, %State{state | request_number: req_num}}
   end
@@ -133,6 +130,14 @@ defmodule Simon.Client do
     Process.sleep(time)
 
     {:noreply, state}
+  end
+
+  def get_primary(view_num) do
+    {primary, _meta} = :syn.lookup(
+      :simon,
+      rem(view_num, :syn.member_count(:simon, :replica)) + 1
+    )
+    primary
   end
 
   def broadcast(msg) do

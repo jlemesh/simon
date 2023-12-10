@@ -1,0 +1,2349 @@
+Compiling 1 file (.ex)
+
+20:03:58.583 [notice] SYN[nonode@nohost] Adding node to scope <simon>
+
+20:03:58.586 [notice] SYN[nonode@nohost] Creating tables for scope <simon>
+
+20:03:58.589 [notice] SYN[nonode@nohost|registry<simon>] Discovering the cluster
+
+20:03:58.590 [notice] SYN[nonode@nohost|pg<simon>] Discovering the cluster
+
+20:03:58.591 [notice] SYN[nonode@nohost] Adding node to scope <behaviour_example>
+
+20:03:58.591 [notice] SYN[nonode@nohost] Creating tables for scope <behaviour_example>
+
+20:03:58.591 [notice] SYN[nonode@nohost|registry<behaviour_example>] Discovering the cluster
+
+20:03:58.591 [notice] SYN[nonode@nohost|pg<behaviour_example>] Discovering the cluster
+
+20:03:58.593 application=simon module=Simon.Node function=register/0 file=lib/simon/node.ex line=288 [debug] [config: []]
+
+20:03:58.595 application=simon module=Simon.Node function=init/1 file=lib/simon/node.ex line=64 [debug] [registered: 1, pid: #PID<0.253.0>]
+
+20:03:58.598 application=simon module=Simon.Client function=init/1 file=lib/simon/client.ex line=78 [debug] [config: [#PID<0.253.0>]]
+.*DBG* 'Elixir.Simon.Client' got call reset_client from <0.278.0>
+*DBG* 'Elixir.Simon.Client' sent ok to <0.278.0>, new state #{config =>
+                                                                  [<0.253.0>],
+                                                              '__struct__' =>
+                                                                  'Elixir.Simon.Client.State',
+                                                              discovery =>
+                                                                  <<>>,
+                                                              client_id =>
+                                                                  <0.254.0>,
+                                                              view_number => 1,
+                                                              request_number =>
+                                                                  0}
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|pg<simon>] Node manager@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node manager@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|registry<simon>] Node manager@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node manager@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node manager@127.0.0.1
+
+20:03:58.652 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:03:59.715 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node primary1@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:59.715 [notice] SYN[manager@127.0.0.1|pg<simon>] Node primary1@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:59.715 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node primary1@127.0.0.1 has joined the cluster, sending discover message
+
+20:03:59.715 [notice] SYN[manager@127.0.0.1|registry<simon>] Node primary1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:00.036 [notice] SYN[primary1@127.0.0.1] Creating tables for scope <simon>
+
+20:04:00.054 [notice] SYN[primary1@127.0.0.1|registry<simon>] Discovering the cluster
+
+20:04:00.054 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node primary1@127.0.0.1
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1|pg<simon>] Discovering the cluster
+
+20:04:00.062 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node primary1@127.0.0.1
+
+20:04:00.062 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node primary1@127.0.0.1
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1] Creating tables for scope <behaviour_example>
+
+20:04:00.062 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node primary1@127.0.0.1
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Discovering the cluster
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Discovering the cluster
+
+20:04:00.084 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:00.054 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:00.084 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:00.085 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:00.085 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:00.062 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:00.319 [notice] SYN[primary1@127.0.0.1] Adding node to scope <simon>
+
+20:04:00.321 [notice] SYN[primary1@127.0.0.1] Adding node to scope <behaviour_example>
+
+20:04:00.327 [debug] [config: []]
+
+20:04:00.343 [debug] [registered: 1, pid: #PID<0.253.0>]
+
+20:04:00.349 [debug] [config: [#PID<0.253.0>]]
+
+20:04:01.999 [notice] SYN[manager@127.0.0.1|pg<simon>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:01.999 [notice] SYN[manager@127.0.0.1|registry<simon>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:01.999 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:01.999 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:02.203 [notice] SYN[primary1@127.0.0.1|registry<simon>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:02.203 [notice] SYN[primary1@127.0.0.1|pg<simon>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:02.203 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:02.203 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Node backup1@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.011 [notice] SYN[manager@127.0.0.1|registry<simon>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.011 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.011 [notice] SYN[manager@127.0.0.1|pg<simon>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.011 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.216 [notice] SYN[primary1@127.0.0.1|registry<simon>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.216 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.216 [notice] SYN[primary1@127.0.0.1|pg<simon>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:03.217 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Node backup2@127.0.0.1 has joined the cluster, sending discover message
+*DBG* 'Elixir.Simon.Node' got timer
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231438597,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{}}
+
+20:04:04.033 [notice] SYN[manager@127.0.0.1|pg<simon>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.033 [notice] SYN[manager@127.0.0.1|registry<simon>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.033 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.033 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.240 [notice] SYN[primary1@127.0.0.1|registry<simon>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.240 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.240 [notice] SYN[primary1@127.0.0.1|pg<simon>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:04.240 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Node backup3@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.119 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.119 [notice] SYN[manager@127.0.0.1|registry<simon>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.119 [notice] SYN[manager@127.0.0.1|pg<simon>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.119 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.327 [notice] SYN[primary1@127.0.0.1|registry<simon>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.327 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.327 [notice] SYN[primary1@127.0.0.1|pg<simon>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:05.327 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Node backup4@127.0.0.1 has joined the cluster, sending discover message
+*DBG* 'Elixir.Simon.Node' got timer
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{}}
+
+20:04:06.162 [notice] SYN[manager@127.0.0.1|registry<simon>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.162 [notice] SYN[manager@127.0.0.1|pg<simon>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.162 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.162 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.371 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.371 [notice] SYN[primary1@127.0.0.1|registry<simon>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.371 [notice] SYN[primary1@127.0.0.1|pg<simon>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.371 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Node backup5@127.0.0.1 has joined the cluster, sending discover message
+
+20:04:06.757 [notice] SYN[backup2@127.0.0.1] Creating tables for scope <simon>
+
+20:04:06.757 [notice] SYN[backup4@127.0.0.1] Creating tables for scope <simon>
+
+20:04:06.758 [notice] SYN[backup3@127.0.0.1] Creating tables for scope <simon>
+
+20:04:06.758 [notice] SYN[backup5@127.0.0.1] Creating tables for scope <simon>
+
+20:04:06.758 [notice] SYN[backup1@127.0.0.1] Creating tables for scope <simon>
+
+20:04:06.784 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.784 [notice] SYN[backup4@127.0.0.1|registry<simon>] Discovering the cluster
+
+20:04:06.784 [notice] SYN[backup2@127.0.0.1|registry<simon>] Discovering the cluster
+
+20:04:06.785 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.785 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup3@127.0.0.1|registry<simon>] Discovering the cluster
+
+20:04:06.785 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup5@127.0.0.1|registry<simon>] Discovering the cluster
+
+20:04:06.786 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.785 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup1@127.0.0.1|registry<simon>] Discovering the cluster
+
+20:04:06.786 [notice] SYN[manager@127.0.0.1|registry<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.785 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.785 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.785 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.786 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.796 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.796 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup2@127.0.0.1|pg<simon>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[backup3@127.0.0.1|pg<simon>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup1@127.0.0.1|pg<simon>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup4@127.0.0.1|pg<simon>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup2@127.0.0.1] Creating tables for scope <behaviour_example>
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup5@127.0.0.1|pg<simon>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[backup1@127.0.0.1] Creating tables for scope <behaviour_example>
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup3@127.0.0.1] Creating tables for scope <behaviour_example>
+
+20:04:06.796 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1] Creating tables for scope <behaviour_example>
+
+20:04:06.796 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Discovering the cluster
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup5@127.0.0.1] Creating tables for scope <behaviour_example>
+
+20:04:06.796 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Discovering the cluster
+
+20:04:06.796 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Discovering the cluster
+
+20:04:06.798 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Discovering the cluster
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Discovering the cluster
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Discovering the cluster
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.798 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.798 [notice] SYN[manager@127.0.0.1|pg<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.798 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.798 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received DISCOVER request from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Discovering the cluster
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.798 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.798 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.798 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.798 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.837 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.837 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.837 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.786 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received ACK SYNC (1 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.838 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received ACK SYNC (2 entries) from node primary1@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup5@127.0.0.1|pg<simon>] Received ACK SYNC (2 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received ACK SYNC (1 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received ACK SYNC (1 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received ACK SYNC (2 entries) from node primary1@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.786 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received ACK SYNC (1 entries) from node primary1@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.844 [notice] SYN[manager@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.844 [notice] SYN[manager@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.837 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.785 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received ACK SYNC (1 entries) from node primary1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.843 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.839 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.798 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.843 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.843 [notice] SYN[primary1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.843 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.844 [notice] SYN[primary1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.843 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.843 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup3@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup3@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup5@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup5@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.838 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup4@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup2@127.0.0.1|pg<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.839 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.844 [notice] SYN[backup1@127.0.0.1|registry<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.797 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received ACK SYNC (2 entries) from node primary1@127.0.0.1
+
+20:04:06.853 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.853 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup5@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.853 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received ACK SYNC (2 entries) from node primary1@127.0.0.1
+
+20:04:06.869 [notice] SYN[manager@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.869 [notice] SYN[primary1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.869 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup3@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup4@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup5@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup1@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.869 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.869 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.869 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.869 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.869 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.870 [notice] SYN[backup2@127.0.0.1|pg<simon>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:06.874 [notice] SYN[primary1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.874 [notice] SYN[manager@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup1@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.796 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node primary1@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup3@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup4@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.873 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup1@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup5@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup2@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node manager@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup1@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup3@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup4@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup4@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup3@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received DISCOVER request from node backup5@127.0.0.1
+
+20:04:06.874 [notice] SYN[backup2@127.0.0.1|registry<behaviour_example>] Received ACK SYNC (0 entries) from node backup5@127.0.0.1
+
+20:04:07.347 [notice] SYN[backup4@127.0.0.1] Adding node to scope <simon>
+
+20:04:07.347 [notice] SYN[backup3@127.0.0.1] Adding node to scope <simon>
+
+20:04:07.353 [notice] SYN[backup4@127.0.0.1] Adding node to scope <behaviour_example>
+
+20:04:07.348 [notice] SYN[backup5@127.0.0.1] Adding node to scope <simon>
+
+20:04:07.353 [notice] SYN[backup3@127.0.0.1] Adding node to scope <behaviour_example>
+
+20:04:07.348 [notice] SYN[backup1@127.0.0.1] Adding node to scope <simon>
+
+20:04:07.354 [notice] SYN[backup5@127.0.0.1] Adding node to scope <behaviour_example>
+
+20:04:07.354 [notice] SYN[backup1@127.0.0.1] Adding node to scope <behaviour_example>
+
+20:04:07.350 [notice] SYN[backup2@127.0.0.1] Adding node to scope <simon>
+
+20:04:07.355 [notice] SYN[backup2@127.0.0.1] Adding node to scope <behaviour_example>
+
+20:04:07.367 [debug] [config: [#PID<8969.253.0>]]
+
+20:04:07.368 [debug] [config: [#PID<8969.253.0>]]
+
+20:04:07.366 [debug] [config: [#PID<8969.253.0>]]
+
+20:04:07.368 [debug] [config: [#PID<8969.253.0>]]
+
+20:04:07.409 [debug] [registered: 2, pid: #PID<0.278.0>]
+
+20:04:07.409 [debug] [registered: 2, pid: #PID<0.278.0>]
+
+20:04:07.409 [debug] [registered: 2, pid: #PID<0.278.0>]
+
+20:04:07.409 [debug] [registered: 2, pid: #PID<0.278.0>]
+
+20:04:07.369 [debug] [config: [#PID<8969.253.0>]]
+
+20:04:07.410 [debug] taken, sleeping...
+
+20:04:07.419 [debug] [config: [#PID<8969.253.0>, #PID<8970.278.0>, #PID<0.278.0>, #PID<9244.278.0>, #PID<10076.278.0>]]
+
+20:04:07.420 [debug] [config: [#PID<8969.253.0>, #PID<0.278.0>, #PID<9243.278.0>, #PID<9244.278.0>, #PID<10076.278.0>]]
+
+20:04:07.420 [debug] [config: [#PID<8969.253.0>, #PID<8970.278.0>, #PID<8972.278.0>, #PID<0.278.0>, #PID<10076.278.0>]]
+
+20:04:07.420 [debug] [config: [#PID<8969.253.0>, #PID<8970.278.0>, #PID<8972.278.0>, #PID<8973.278.0>, #PID<0.278.0>]]
+
+20:04:07.409 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8970.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.409 [notice] SYN[backup1@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9243.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping remote: #PID<9243.278.0>
+
+20:04:07.409 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8970.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.409 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8970.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [debug] [config: [#PID<8969.253.0>, #PID<9243.278.0>, #PID<9244.278.0>, #PID<10076.278.0>]]
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [debug] [registered: 5, pid: #PID<0.280.0>]
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [debug] [config: [#PID<8969.253.0>, #PID<9243.278.0>, #PID<9244.278.0>, #PID<10076.278.0>, #PID<0.280.0>]]
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.429 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.711 [debug] [config: [#PID<8969.253.0>, #PID<9243.278.0>, #PID<9244.278.0>, #PID<10076.278.0>, #PID<8970.280.0>]]
+
+20:04:07.430 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.711 [debug] [registered: 6, pid: #PID<0.278.0>]
+
+20:04:07.430 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.789 [notice] Handler :default flushed 3367 log events
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<10076.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.789 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.861 [notice] Handler :default flushed 3999 log events
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.861 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.861 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.430 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.133 [debug] [config: [#PID<8969.253.0>, #PID<0.278.0>, #PID<9243.278.0>, #PID<9244.278.0>, #PID<10076.278.0>, #PID<8970.280.0>]]
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.790 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.791 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.791 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.862 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.791 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.791 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.791 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.431 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.791 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.792 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.792 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.792 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.792 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got timer
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231438597,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{}}
+
+20:04:07.863 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.792 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<0.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<0.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<0.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<0.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<0.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<0.253.0>}
+
+20:04:07.864 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.623 [notice] Handler :default flushed 5000 log events
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.654 [debug] [len: 1]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+
+20:04:08.654 [debug] [len: 1]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447711,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 6,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447429,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 5,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+
+20:04:08.654 [debug] [len: 1]
+
+20:04:07.864 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.624 [notice] Handler :default flushed 2292 log events
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.693 [notice] Handler :default flushed 5000 log events
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.693 [notice] Handler :default flushed 2267 log events
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.693 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.693 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.432 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.693 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.624 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.625 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.625 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.625 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.625 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.625 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.625 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.626 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.694 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.626 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.626 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.433 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.627 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.627 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.627 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.627 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.627 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:08.695 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.474 [notice] Handler :default flushed 5000 log events
+
+20:04:08.696 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] Handler :default flushed 2579 log events
+
+20:04:09.541 [notice] Handler :default flushed 5000 log events
+
+20:04:07.434 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] Handler :default flushed 2592 log events
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.542 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.435 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.475 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.543 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.544 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.476 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:09.544 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.436 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.291 [notice] Handler :default flushed 5000 log events
+
+20:04:09.544 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.292 [notice] Handler :default flushed 2612 log events
+*DBG* 'Elixir.Simon.Node' got timer
+
+20:04:10.358 [notice] Handler :default flushed 5000 log events
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.292 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+
+20:04:10.358 [notice] Handler :default flushed 2595 log events
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.292 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23531.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23531.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23531.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23531.253.0>}
+
+20:04:10.358 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.292 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447711,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 6,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+
+20:04:10.439 [debug] [len: 2]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447429,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 5,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+
+20:04:10.439 [debug] [len: 2]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.292 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.292 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.293 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.293 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.293 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.293 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.359 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.293 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.293 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.437 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.294 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.294 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.294 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.294 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.294 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.360 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.294 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.361 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.295 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.361 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.295 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.361 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.295 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.361 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.295 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:10.361 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.138 [notice] Handler :default flushed 5000 log events
+
+20:04:10.361 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] Handler :default flushed 2603 log events
+
+20:04:07.438 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.204 [notice] Handler :default flushed 5000 log events
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] Handler :default flushed 2613 log events
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.205 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.206 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.206 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.439 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.206 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.206 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.139 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.206 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.206 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.140 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.207 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.973 [notice] Handler :default flushed 5000 log events
+
+20:04:07.440 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.208 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] Handler :default flushed 2602 log events
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.043 [notice] Handler :default flushed 5000 log events
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.044 [notice] Handler :default flushed 2661 log events
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.044 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.044 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.044 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got timer
+*DBG* 'Elixir.Simon.Node' got timer
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.441 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.974 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+
+20:04:12.045 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.975 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23604.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23604.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23604.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23604.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23602.278.0>}
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.975 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23604.278.0>}]}}
+
+20:04:12.455 [debug] [len: 2]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447429,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 5,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23531.253.0>},
+                                           {start_view_change,2,
+                                            <23604.278.0>}]}}
+
+20:04:12.455 [debug] [len: 3]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447711,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 6,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23531.253.0>},
+                                           {start_view_change,2,
+                                            <23604.278.0>}]}}
+
+20:04:12.455 [debug] [len: 3]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23531.253.0>},
+                                           {start_view_change,2,
+                                            <23604.278.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23531.253.0>},
+                                           {start_view_change,2,
+                                            <23602.278.0>}]}}
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.975 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23602.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23602.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23602.278.0>}
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.975 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23604.278.0>},
+                                           {start_view_change,2,
+                                            <23602.278.0>}]}}
+
+20:04:12.524 [debug] [len: 3]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447429,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 5,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{2 => []}}
+
+20:04:12.525 [debug] [len: 4]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447711,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 6,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{2 => []}}
+
+20:04:12.525 [debug] [len: 4]
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {do_view_change,2,[],1,0,0,<23598.280.0>}
+*DBG* 'Elixir.Simon.Node' got cast {do_view_change,2,[],1,0,0,<23600.278.0>}
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.976 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got timer
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.976 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447429,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 3,
+                                      replica_num => 5,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{2 => []}}
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23598.280.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23598.280.0>}
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.976 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23604.278.0>},
+                                           {start_view_change,2,
+                                            <23602.278.0>}],
+                                         3 =>
+                                          [{start_view_change,3,
+                                            <23598.280.0>}]}}
+
+20:04:12.661 [debug] [len: 1]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447711,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 6,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 => [],
+                                         3 =>
+                                          [{start_view_change,3,
+                                            <23598.280.0>}]}}
+
+20:04:12.662 [debug] [len: 1]
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.976 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:11.976 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got timer
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>}]}}
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.748 [notice] Handler :default flushed 5000 log events
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447711,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 3,
+                                      replica_num => 6,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 => [],
+                                         3 =>
+                                          [{start_view_change,3,
+                                            <23598.280.0>}]}}
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23531.253.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23600.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23600.278.0>}
+
+20:04:12.046 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.748 [notice] Handler :default flushed 1953 log events
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,
+                                            <23531.253.0>}]}}
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231440347,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 1,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23604.278.0>},
+                                           {start_view_change,2,
+                                            <23602.278.0>}],
+                                         3 =>
+                                          [{start_view_change,3,<23598.280.0>},
+                                           {start_view_change,3,
+                                            <23600.278.0>}]}}
+
+20:04:12.823 [debug] [len: 2]
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447429,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 3,
+                                      replica_num => 5,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 => [],
+                                         3 =>
+                                          [{start_view_change,3,
+                                            <23600.278.0>}]}}
+
+20:04:12.823 [debug] [len: 1]
+
+20:04:12.843 [notice] Handler :default flushed 5000 log events
+
+20:04:12.748 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23602.278.0>}
+
+20:04:12.844 [notice] Handler :default flushed 2037 log events
+
+20:04:12.748 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                       'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 1,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf =>
+                                       #{2 =>
+                                          [{start_view_change,2,<0.253.0>},
+                                           {start_view_change,2,<23531.253.0>},
+                                           {start_view_change,2,
+                                            <23602.278.0>}]}}
+
+20:04:12.844 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.748 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,2,<23604.278.0>}
+
+20:04:12.844 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.748 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"normal">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 2,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{2 => []}}
+
+20:04:12.845 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.749 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.442 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got timer
+
+20:04:12.749 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.845 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:07.443 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' new state #{status => <<"view_change">>,log => [],
+                                      config => [],timer => 1702231447409,
+                                      '__struct__' =>
+                                          'Elixir.Simon.Node.State',
+                                      discovery => <<>>,view_num => 3,
+                                      replica_num => 2,op_num => 0,
+                                      commit_num => 0,client_table => #{},
+                                      prepare_ok_buf => #{},storage => [],
+                                      log_buf => [],
+                                      start_view_change_buf => #{2 => []}}
+
+20:04:12.749 [notice] SYN[backup3@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<9244.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+
+20:04:12.845 [notice] SYN[backup4@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8972.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23606.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23606.278.0>}
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23606.278.0>}
+
+20:04:07.443 [notice] SYN[backup5@127.0.0.1|registry<simon>] Registry CONFLICT for name 2: {#PID<8973.278.0>, :undefined} vs {#PID<0.278.0>, :undefined} -> keeping local: #PID<0.278.0>
+*DBG* 'Elixir.Simon.Node' got cast {start_view_change,3,<23598.280.0>}
+
+
+  1) test should change view (SimonTest)
+     test/simon_test.exs:77
+     ** (ExUnit.TimeoutError) test timed out after 60000ms. You can change the timeout:
+     
+       1. per test by setting "@tag timeout: x" (accepts :infinity)
+       2. per test module by setting "@moduletag timeout: x" (accepts :infinity)
+       3. globally via "ExUnit.start(timeout: x)" configuration
+       4. by running "mix test --timeout x" which sets timeout
+       5. or by running "mix test --trace" which sets timeout to infinity
+          (useful when using IEx.pry/0)
+     
+     where "x" is the timeout given as integer in milliseconds (defaults to 60_000).
+     
+     code: [n2, n3, n4, n5, n6] = LocalCluster.start_nodes("backup", 5)
+     stacktrace:
+       (kernel 9.0.2) erpc.erl:895: :erpc.mcall_receive_replies/5
+       (kernel 9.0.2) erpc.erl:885: :erpc.mcall_receive_replies/2
+       (kernel 9.0.2) erpc.erl:521: :erpc.multicall/5
+       (kernel 9.0.2) rpc.erl:681: :rpc.multicall/5
+       (local_cluster 1.2.1) lib/local_cluster.ex:69: anonymous fn/4 in LocalCluster.start_nodes/3
+       (local_cluster 1.2.1) lib/local_cluster.ex:98: anonymous fn/4 in LocalCluster.start_nodes/3
+       (elixir 1.15.5) lib/enum.ex:2510: Enum."-reduce/3-lists^foldl/2-0-"/3
+       (local_cluster 1.2.1) lib/local_cluster.ex:97: LocalCluster.start_nodes/3
+       test/simon_test.exs:84: (test)
+       (ex_unit 1.15.5) lib/ex_unit/runner.ex:463: ExUnit.Runner.exec_test/2
+       (stdlib 5.0.2) timer.erl:270: :timer.tc/2
+       (ex_unit 1.15.5) lib/ex_unit/runner.ex:385: anonymous fn/5 in ExUnit.Runner.spawn_test_monitor/4
+
+
+Finished in 60.0 seconds (0.00s async, 60.0s sync)
+1 doctest, 1 test, 1 failure
+
+Randomized with seed 607782
