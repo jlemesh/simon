@@ -7,7 +7,14 @@ Simon is a VSR.
 - fix syn registration (sometimes one node fails to register)
 - view change
 - reconfiguration
-- 
+
+## Links
+
+https://github.com/penberg/vsr-rs/blob/main/src/replica.rs
+https://charap.co/reading-group-viewstamped-replication-revisited/
+https://dspace.mit.edu/bitstream/handle/1721.1/71763/MIT-CSAIL-TR-2012-021.pdf?sequence=1
+https://medium.com/@polyglot_factotum/understand-viewstamped-replication-with-rust-automerge-and-tla-7a94e9e4d553
+https://jack-vanlightly.com/analyses/2022/12/20/vr-revisited-an-analysis-with-tlaplus
 
 ## Tests
 
@@ -44,4 +51,4 @@ curl http://localhost:9001/read && echo
 
 # read node C reg, should have the value we've just added
 curl http://localhost:9002/read && echo
-``````
+```

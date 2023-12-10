@@ -19,6 +19,24 @@ defmodule Simon.Client do
     v
   end
 
+  @spec read :: {:error, any} | {answer :: String.t()}
+  def get_log do
+    v = GenServer.call(__MODULE__, :get_log)
+    v
+  end
+
+  @spec read :: {:error, any} | {answer :: String.t()}
+  def get_storage do
+    v = GenServer.call(__MODULE__, :get_storage)
+    v
+  end
+
+  @spec read :: {:error, any} | {answer :: String.t()}
+  def reset(node) do
+    v = GenServer.call(__MODULE__, {:reset, node})
+    v
+  end
+
   ### Callbacks
 
   defmodule State do
@@ -52,13 +70,27 @@ defmodule Simon.Client do
     end
     config = for {pid, _} <- :syn.members(:simon, :replica), do: pid
     Logger.debug(config: config)
-    # if length(config) > 0 do
-    #   {primary, _meta} = :syn.lookup(:simon, 1)
-    #   Logger.debug(primary: node(primary))
-    #   :pong = Node.ping(node(primary))
-    # end
+
     :ok = :syn.join(:simon, :client, self())
     {:ok, %State{discovery: discovery, view_number: 1, config: config, client_id: self(), request_number: 0}}
+  end
+
+  @impl GenServer
+  def handle_call(:get_log, _from, state) do
+    replies = broadcast(:get_log)
+    {:reply, replies, state}
+  end
+
+  @impl GenServer
+  def handle_call(:get_storage, _from, state) do
+    replies = broadcast(:get_storage)
+    {:reply, replies, state}
+  end
+
+  @impl GenServer
+  def handle_call({:reset, node}, _from, state) do
+    GenServer.call({Simon.Node, node}, :reset)
+    {:reply, :ok, state}
   end
 
   @impl GenServer
@@ -93,17 +125,8 @@ defmodule Simon.Client do
   end
 
   def broadcast(msg) do
-    Logger.debug("broadcast")
-    self = self()
-    members = for {pid, _} <- :syn.members(:simon, :node), pid != self, do: pid
-    replies = for pid <- members, do: send_msg(pid, msg)
-
-    # will loop infinitely until there are enough replies
-    if length(replies) < length(members) / 2 do
-      broadcast(msg)
-    else
-      replies
-    end
+    members = for {pid, _} <- :syn.members(:simon, :replica), do: pid
+    for pid <- members, do: send_msg(pid, msg)
   end
 
   def send_msg(pid, msg) do

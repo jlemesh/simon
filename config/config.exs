@@ -7,5 +7,7 @@
 # General application configuration
 import Config
 
-config :logger, :console, format: "[$level] $metadata$message\n",
-  metadata: [:module, :function, :my_id]
+config :logger, :console,
+  level: :debug,
+  format: "\n$time $metadata[$level] $message\n",
+  metadata: [:application, :module, :function, :file, :line]
