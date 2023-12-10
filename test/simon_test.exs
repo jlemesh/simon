@@ -2,7 +2,8 @@ defmodule SimonTest do
   use ExUnit.Case, async: false
   doctest Simon
 
-  test "should read and write" do
+  test "should write" do
+    Simon.Client.reset_client()
     :ok = LocalCluster.start()
     [n1] = LocalCluster.start_nodes("primary", 1)
 
@@ -43,6 +44,7 @@ defmodule SimonTest do
   end
 
   test "should write in order" do
+    Simon.Client.reset_client()
     :ok = LocalCluster.start()
     [n1] = LocalCluster.start_nodes("primary", 1)
 

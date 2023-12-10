@@ -37,6 +37,12 @@ defmodule Simon.Client do
     v
   end
 
+  @spec read :: {:error, any} | {answer :: String.t()}
+  def reset_client() do
+    v = GenServer.call(__MODULE__, :reset_client)
+    v
+  end
+
   ### Callbacks
 
   defmodule State do
@@ -91,6 +97,11 @@ defmodule Simon.Client do
   def handle_call({:reset, node}, _from, state) do
     GenServer.call({Simon.Node, node}, :reset)
     {:reply, :ok, state}
+  end
+
+  @impl GenServer
+  def handle_call(:reset_client, _from, state) do
+    {:reply, :ok, %State{discovery: state.discovery, view_number: 1, config: state.config, client_id: self(), request_number: 0}}
   end
 
   @impl GenServer
