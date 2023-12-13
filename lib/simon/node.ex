@@ -138,9 +138,15 @@ defmodule Simon.Node do
   @impl GenServer
   def handle_call({:write, v, client_id, req_num}, from, state) do
     Logger.debug(call: "write", from: from)
-    case Map.get(state.client_table, client_id) do
-      nil -> process_write(state, v, client_id, req_num, from)
-      resp -> respond_existing(req_num, resp, state, v, client_id, from)
+    if self() != get_primary(state.view_num) do
+      Logger.debug([self: self(), primary: get_primary(state.view_num)])
+      {:reply, :ignore, state}
+    else
+      case Map.get(state.client_table, client_id) do
+        {_num, nil} -> process_write(state, v, client_id, req_num, from)
+        nil -> process_write(state, v, client_id, req_num, from)
+        {_num, {:reply, a, b, c}} -> respond_existing(req_num, {:reply, a, b, c}, state, v, client_id, from)
+      end
     end
   end
 
@@ -237,7 +243,7 @@ defmodule Simon.Node do
           []
         ),
         commit_num: state.commit_num + 1,
-        client_table: Map.put(state.client_table, client_id, resp),
+        client_table: Map.put(state.client_table, client_id, {req_num, resp}),
         storage: commit_sm([{:write, v}], state.storage)
       }}
     else
@@ -305,7 +311,7 @@ defmodule Simon.Node do
         }
       )
 
-      logs = Enum.slice(log, state.commit_num..new_commit_num)
+      logs = Enum.slice(log, state.commit_num + 1..new_commit_num)
       entries = for {entry, _a, _b, _c} <- logs, do: entry
       Logger.debug([fun: "do_view_change", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: new_commit_num])
       storage = commit_sm(Enum.reverse(entries), state.storage)
@@ -343,22 +349,33 @@ defmodule Simon.Node do
     replies = for {_entry, client_id, req_num, _from} <- uncommited, do: {client_id, {:reply, view_num, req_num, 0}}
     client_table = update_client_table(replies, state.client_table)
 
-    logs = Enum.slice(log, state.commit_num..commit_num)
-    entries = for {entry, _a, _b, _c} <- logs, do: entry
-    Logger.debug("start_view", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: commit_num)
-    storage = commit_sm(Enum.reverse(entries), state.storage)
-    replies = for {_entry, client_id, req_num, _from} <- logs, do: {client_id, {:reply, view_num, req_num, 0}}
-    client_table1 = update_client_table(replies, client_table)
+    if state.commit_num < commit_num do
+      logs = Enum.slice(log, state.commit_num+1..commit_num)
+      entries = for {entry, _a, _b, _c} <- logs, do: entry
+      Logger.debug([fun: "start_view", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: commit_num])
+      storage = commit_sm(Enum.reverse(entries), state.storage)
+      replies = for {_entry, client_id, req_num, _from} <- logs, do: {client_id, {:reply, view_num, req_num, 0}}
+      client_table1 = update_client_table(replies, client_table)
 
-    {:noreply, %State{state |
-      op_num: op_num,
-      log: log,
-      commit_num: commit_num,
-      storage: storage,
-      view_num: view_num,
-      status: "normal",
-      client_table: client_table1,
-    }}
+      {:noreply, %State{state |
+        op_num: op_num,
+        log: log,
+        commit_num: commit_num,
+        storage: storage,
+        view_num: view_num,
+        status: "normal",
+        client_table: client_table1,
+        timer: System.os_time(:millisecond),
+      }}
+    else
+      {:noreply, %State{state |
+        op_num: op_num,
+        log: log,
+        view_num: view_num,
+        status: "normal",
+        timer: System.os_time(:millisecond),
+      }}
+    end
   end
 
   def update_client_table([], client_table), do: client_table

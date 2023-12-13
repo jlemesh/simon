@@ -110,19 +110,14 @@ defmodule Simon.Client do
     req_num = state.request_number + 1
     config = for {pid, _} <- :syn.members(:simon, :replica), do: pid
     Logger.debug(config: config)
-    #n = length(config)
     primary = get_primary(state.view_number)
-    resp = GenServer.call(primary, {:write, v, state.client_id, req_num})
-    {:reply, resp, %State{state | request_number: req_num}}
-  end
-
-  @impl GenServer
-  def handle_call({:init_read}, _from, state) do
-    req_num = state.request_number + 1
-    n = length(state.config)
-    primary = rem(n, state.view_number)
-    {:ok, v} = GenServer.call(state.config[primary], {:read, req_num})
-    {:reply, v, %State{state | request_number: req_num}}
+    case send_msg(primary, {:write, v, state.client_id, req_num}) do
+      {:reply, _view_num, _req_num, v} -> {:reply, v, %State{state | request_number: req_num}}
+      :ignore ->
+        Logger.debug("ignored, broadcasting")
+        v = broadcast({:write, v, state.client_id, req_num})
+        {:reply, v, %State{state | request_number: req_num}}
+    end
   end
 
   @impl GenServer
@@ -141,8 +136,12 @@ defmodule Simon.Client do
   end
 
   def broadcast(msg) do
-    members = for {pid, _} <- :syn.members(:simon, :replica), do: pid
-    for pid <- members, do: send_msg(pid, msg)
+    members = for {pid, _} <- :syn.members(:simon, :replica), do: node(pid)
+    Logger.debug([self: self(), members: members])
+    {replies, bad_nodes} = GenServer.multi_call(members, Simon.Node, msg)
+    Logger.debug(replies: replies, bad_nodes: bad_nodes)
+    for {_n, r} <- replies, do: r
+    #for pid <- members, do: send_msg(pid, msg)
   end
 
   def send_msg(pid, msg) do
