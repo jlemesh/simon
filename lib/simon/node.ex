@@ -66,7 +66,7 @@ defmodule Simon.Node do
     end
 
     replica_num = register()
-    Logger.debug(registered: replica_num, pid: self())
+    Logger.debug("init", registered: replica_num, pid: self())
     :ok = :syn.join(:simon, :replica, self())
     start_timer()
     {:ok, %State{
@@ -166,20 +166,32 @@ defmodule Simon.Node do
     else
       case Enum.at(state.log, commit_num - 1) do
         {entry, _pid, _num, _from} ->
-          storage = commit_sm([entry], state.storage)
-          :ok = cast_primary(state, {:prepare_ok, view_num, op_num, state.replica_num})
-          {:noreply, %State{state |
-            client_table: Map.put(state.client_table, elem(req, 1), req),
-            log: state.log ++ state.log_buf ++ [req],
-            op_num: op_num,
-            storage: storage,
-            commit_num: commit_num,
-            timer: System.os_time(:millisecond),
-          }}
+          if state.commit_num < commit_num do
+            Logger.debug([fun: "prepare", entries_to_commit: [entry], old_commit_num: state.commit_num, new_commit_num: commit_num])
+            storage = commit_sm([entry], state.storage)
+            :ok = cast_primary(state, {:prepare_ok, view_num, op_num, state.replica_num})
+            {:noreply, %State{state |
+              client_table: Map.put(state.client_table, elem(req, 1), {elem(req, 2), nil}),
+              log: state.log ++ state.log_buf ++ [req],
+              op_num: op_num,
+              storage: storage,
+              commit_num: commit_num,
+              timer: System.os_time(:millisecond),
+            }}
+          else
+            :ok = cast_primary(state, {:prepare_ok, view_num, op_num, state.replica_num})
+            {:noreply, %State{state |
+              client_table: Map.put(state.client_table, elem(req, 1), {elem(req, 2), nil}),
+              log: state.log ++ state.log_buf ++ [req],
+              op_num: op_num,
+              commit_num: commit_num,
+              timer: System.os_time(:millisecond),
+            }}
+          end
         nil ->
           :ok = cast_primary(state, {:prepare_ok, view_num, op_num, state.replica_num})
           {:noreply, %State{state |
-            client_table: Map.put(state.client_table, elem(req, 1), req),
+            client_table: Map.put(state.client_table, elem(req, 1), {elem(req, 2), nil}),
             log: state.log ++ state.log_buf ++ [req],
             op_num: op_num,
             timer: System.os_time(:millisecond),
@@ -190,6 +202,7 @@ defmodule Simon.Node do
 
   def handle_cast({:new_state, _view_num, log, op_num, commit_num}, state) do
     entries = for {entry, _a, _b, _c} <- Enum.take(log, commit_num - state.commit_num), do: entry
+    Logger.debug(["new_state", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: commit_num])
     storage = commit_sm(Enum.reverse(entries), state.storage)
     {:noreply, %State{state |
       op_num: op_num,
@@ -207,15 +220,16 @@ defmodule Simon.Node do
       state.op_num,
       old_buf ++ [{:prepare_ok, view_num, op_num, replica_num}]
     )
-    Logger.debug(len: length(buf_mod[op_num]))
+    Logger.debug("prepare_ok", buffer_len: length(buf_mod[op_num]))
     if length(buf_mod[op_num]) > :syn.member_count(:simon, :replica) / 2 do
       {{:write, v}, client_id, req_num, from} = Enum.at(state.log, op_num - 1)
-      Logger.debug(log: state.log, op_num: op_num)
+      Logger.debug("enough prepare_ok msgs", log: state.log, op_num: op_num)
       resp = {:reply, state.view_num, req_num, 0}
       GenServer.reply(
         from,
         resp
       )
+      Logger.debug([fun: "prepare_ok", etries_to_commit: [{:write, v}], old_commit_num: state.commit_num, new_commit_num: state.commit_num + 1])
       {:noreply, %State{state |
         prepare_ok_buf: Map.put(
           state.prepare_ok_buf,
@@ -239,23 +253,29 @@ defmodule Simon.Node do
       view_num,
       old_buf ++ [{:start_view_change, view_num, from}]
     )
-    Logger.debug(len: length(buf_mod[view_num]))
-    if length(buf_mod[view_num]) >= :syn.member_count(:simon, :replica) / 2 do
-      primary = get_primary(view_num)
-      GenServer.cast(
-        primary,
-        {:do_view_change, view_num, state.log, state.view_num, state.op_num, state.commit_num, self()}
-      )
-      {:noreply, %State{state |
-        start_view_change_buf: Map.put(
-          state.start_view_change_buf,
-          view_num,
-          []
-        ),
-        view_num: view_num
-      }}
-    else
-      {:noreply, %State{state | start_view_change_buf: buf_mod}}
+    Logger.debug("start_view_change", buffer_len: length(buf_mod[view_num]))
+
+    cond do
+      length(buf_mod[view_num]) >= :syn.member_count(:simon, :replica) / 2 ->
+        primary = get_primary(view_num)
+        GenServer.cast(
+          primary,
+          {:do_view_change, view_num, state.log, state.view_num, state.op_num, state.commit_num, self()}
+        )
+        {:noreply, %State{state |
+          start_view_change_buf: Map.put(
+            state.start_view_change_buf,
+            view_num,
+            []
+          ),
+          view_num: view_num
+        }}
+      state.status == "view_change" -> {:noreply, %State{state | start_view_change_buf: buf_mod}}
+      state.status == "normal" ->
+        view_num = state.view_num + 1
+        status = "view_change"
+        broadcast({:start_view_change, view_num, self()})
+        {:noreply, %State{state | start_view_change_buf: buf_mod, status: status, view_num: view_num}}
     end
   end
 
@@ -267,7 +287,7 @@ defmodule Simon.Node do
       view_num,
       old_buf ++ [{:do_view_change, view_num, log, old_view_num, op_num, commit_num, from}]
     )
-    Logger.debug(len: length(buf_mod[view_num]))
+    Logger.debug("do_view_change", buffer_len: length(buf_mod[view_num]))
     if length(buf_mod[view_num]) > :syn.member_count(:simon, :replica) / 2 do
       max = get_with_largest_op_num(get_with_largest_view_num(buf_mod[view_num]))
       new_log = elem(max, 2)
@@ -287,6 +307,7 @@ defmodule Simon.Node do
 
       logs = Enum.slice(log, state.commit_num..new_commit_num)
       entries = for {entry, _a, _b, _c} <- logs, do: entry
+      Logger.debug([fun: "do_view_change", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: new_commit_num])
       storage = commit_sm(Enum.reverse(entries), state.storage)
       for {_entry, _client_id, req_num, from} <- logs, do: GenServer.reply(
         from,
@@ -324,6 +345,7 @@ defmodule Simon.Node do
 
     logs = Enum.slice(log, state.commit_num..commit_num)
     entries = for {entry, _a, _b, _c} <- logs, do: entry
+    Logger.debug("start_view", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: commit_num)
     storage = commit_sm(Enum.reverse(entries), state.storage)
     replies = for {_entry, client_id, req_num, _from} <- logs, do: {client_id, {:reply, view_num, req_num, 0}}
     client_table1 = update_client_table(replies, client_table)
@@ -346,7 +368,7 @@ defmodule Simon.Node do
   end
 
   def update_client_table([{client_id, resp} | rest], client_table) do
-    Map.put(update_client_table(rest, client_table), client_id, resp)  #commit_sm(rest, storage) ++ [elem(item, 1)] #[item | concat(rest, list)]
+    Map.put(update_client_table(rest, client_table), client_id, resp)
   end
 
   def get_with_largest_view_num(buffer) do
@@ -401,7 +423,7 @@ defmodule Simon.Node do
 
   def get_primary(view_num) do
     pr_num = rem(view_num, :syn.member_count(:simon, :replica)) + 1
-    Logger.debug(view_num: view_num, pr_num: pr_num)
+    Logger.debug("get_primary", view_num: view_num, primary_num: pr_num, member_count: :syn.member_count(:simon, :replica))
     {primary, _meta} = :syn.lookup(
       :simon,
       pr_num
@@ -413,7 +435,7 @@ defmodule Simon.Node do
     config = get_replicas()
     id = length(config) + 1
 
-    Logger.debug(config: config)
+    Logger.debug("register", config: config)
 
     case :syn.register(:simon, id, self()) do
       :ok -> id
@@ -438,17 +460,21 @@ defmodule Simon.Node do
 
   @impl GenServer
   def handle_info(:timer, state) do
-    if System.os_time(:millisecond) > state.timer + 5000 && get_primary(state.view_num) != self() && state.replica_num != 0 do
-      view_num = state.view_num + 1
-      status = "view_change"
-      broadcast({:start_view_change, view_num, self()})
-      {:noreply, %State{state |
-      view_num: view_num,
-      status: status
-    }}
-    else
-      start_timer() # Reschedule again
-      {:noreply, state}
+    cond do
+      System.os_time(:millisecond) > state.timer + 5000 && get_primary(state.view_num) != self() && state.replica_num != 0 ->
+        Logger.debug("start view change", replica_num: state.replica_num)
+        view_num = state.view_num + 1
+        status = "view_change"
+        broadcast({:start_view_change, view_num, self()})
+        {:noreply, %State{state |
+          view_num: view_num,
+          status: status
+        }}
+      state.replica_num == 0 ->
+        {:noreply, state}
+      true ->
+        start_timer() # Reschedule again
+        {:noreply, state}
     end
   end
 end
