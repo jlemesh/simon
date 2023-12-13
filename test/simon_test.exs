@@ -74,7 +74,7 @@ defmodule SimonTest do
     LocalCluster.stop_nodes([n1, n2, n3, n4, n5, n6])
   end
 
-  test "should change view" do
+  test "should write with view change" do
     Simon.Node.leave
     Process.sleep(5000)
 
@@ -103,5 +103,39 @@ defmodule SimonTest do
     assert v == [["a"], ["a"], ["a", "b"]]
 
     LocalCluster.stop_nodes([n1, n2, n3])
+  end
+
+  test "should recover" do
+    Simon.Node.leave
+    Process.sleep(5000)
+
+    assert :syn.member_count(:simon, :replica) == 0
+    assert :syn.lookup(:simon, 1) == :undefined
+
+    Simon.Client.reset_client()
+    :ok = LocalCluster.start()
+    Process.sleep(1000)
+    [n1] = LocalCluster.start_nodes("primary", 1)
+
+    assert :syn.member_count(:simon, :replica) == 1
+    Process.sleep(1000)
+
+    [n2, n3] = LocalCluster.start_nodes("backup", 2)
+
+    Process.sleep(1000)
+
+    Simon.Client.write("a")
+
+    [n4] = LocalCluster.start_nodes("new", 1)
+    Process.sleep(1000)
+    GenServer.cast({Simon.Node, n4}, :init_recover)
+    Process.sleep(1000)
+
+    Simon.Client.write("b")
+
+    v = Simon.Client.get_storage()
+    assert v == [["a"], ["a", "b"], ["a"], ["a"]]
+
+    LocalCluster.stop_nodes([n1, n2, n3, n4])
   end
 end

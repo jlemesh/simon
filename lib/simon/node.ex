@@ -31,8 +31,8 @@ defmodule Simon.Node do
   ### Callbacks
 
   defmodule State do
-    @enforce_keys [:discovery, :view_num, :config, :replica_num, :status, :op_num, :log, :commit_num, :client_table, :prepare_ok_buf, :storage, :log_buf, :timer, :start_view_change_buf, :do_view_change_buf]
-    defstruct discovery: "", view_num: 0, config: [], replica_num: 0, status: "", op_num: 0, log: [], commit_num: 0, client_table: %{}, prepare_ok_buf: %{}, storage: [], log_buf: [], timer: 0, start_view_change_buf: %{}, do_view_change_buf: %{}
+    @enforce_keys [:discovery, :view_num, :config, :replica_num, :status, :op_num, :log, :commit_num, :client_table, :prepare_ok_buf, :storage, :log_buf, :timer, :start_view_change_buf, :do_view_change_buf, :nonce, :recovery_buf]
+    defstruct discovery: "", view_num: 0, config: [], replica_num: 0, status: "", op_num: 0, log: [], commit_num: 0, client_table: %{}, prepare_ok_buf: %{}, storage: [], log_buf: [], timer: 0, start_view_change_buf: %{}, do_view_change_buf: %{}, nonce: "", recovery_buf: []
 
     @typedoc """
     This is the state of our node.
@@ -53,6 +53,8 @@ defmodule Simon.Node do
       timer: Integer.t(),
       start_view_change_buf: Map.t(),
       do_view_change_buf: Map.t(),
+      nonce: String.t(),
+      recovery_buf: List.t(),
     }
   end
 
@@ -85,6 +87,78 @@ defmodule Simon.Node do
       timer: System.os_time(:millisecond) + 5000,
       start_view_change_buf: Map.new(),
       do_view_change_buf: Map.new(),
+      nonce: "",
+      recovery_buf: [],
+    }}
+  end
+
+  @impl GenServer
+  def handle_cast(:init_recover, state) do
+    nonce = for _ <- 1..10, into: "", do: <<Enum.random('0123456789abcdef')>>
+    broadcast({:recovery, self(), nonce})
+    {:noreply, %State{state |
+      status: "recovering",
+      nonce: nonce,
+    }}
+  end
+
+  @impl GenServer
+  def handle_cast({:recovery, from, nonce}, state) do
+    cond do
+      state.status == "normal" && self() == get_primary(state.view_num) ->
+        GenServer.cast(from, {:recovery_response, state.view_num, nonce, state.log, state.op_num, state.commit_num, self()})
+        {:noreply, state}
+      state.status == "normal" && self() != get_primary(state.view_num) ->
+        GenServer.cast(from, {:recovery_response, state.view_num, nonce, nil, nil, nil, nil})
+        {:noreply, state}
+      true -> {:noreply, state}
+    end
+  end
+
+  @impl GenServer
+  def handle_cast({:recovery_response, view_num, nonce, log, op_num, commit_num, from}, state) do
+    if state.nonce == nonce do
+      buf_mod = state.recovery_buf ++ [{:recovery_response, view_num, nonce, log, op_num, commit_num, from}]
+      Logger.debug("recovery_response", buffer_len: length(buf_mod))
+      if length(buf_mod) > :syn.member_count(:simon, :replica) / 2 do
+
+        case replica_response(buf_mod) do
+          nil -> {:noreply, %State{state | recovery_buf: buf_mod}}
+          {:recovery_response, view_num, _nonce, log, op_num, commit_num, _from} ->
+            recovery(state, view_num, log, op_num, commit_num)
+        end
+
+      else
+        {:noreply, %State{state | recovery_buf: buf_mod}}
+      end
+    else
+      {:noreply, state}
+    end
+  end
+
+  def replica_response(buf) do
+    l = Enum.filter(buf, fn x -> elem(x, 3) != nil end)
+    Enum.at(l, 0, nil)
+  end
+
+  def recovery(state, view_num, log, op_num, commit_num) do
+    logs = Enum.slice(log, state.commit_num..commit_num)
+    entries = for {entry, _a, _b, _c} <- logs, do: entry
+    Logger.debug([fun: "recover", logs_to_commit: entries, old_commit_num: state.commit_num, new_commit_num: commit_num])
+    storage = commit_sm(Enum.reverse(entries), state.storage)
+
+    replies = for {_entry, client_id, req_num, _from} <- logs, do: {client_id, {:reply, view_num, req_num, 0}}
+
+    client_table = update_client_table(replies, state.client_table)
+
+    {:noreply, %State{state |
+      view_num: view_num,
+      client_table: client_table,
+      storage: storage,
+      log: log,
+      op_num: op_num,
+      commit_num: commit_num,
+      status: "normal"
     }}
   end
 
@@ -116,6 +190,8 @@ defmodule Simon.Node do
       timer: System.os_time(:millisecond),
       start_view_change_buf: Map.new(),
       do_view_change_buf: Map.new(),
+      nonce: "",
+      recovery_buf: [],
     }}
   end
 
@@ -235,7 +311,7 @@ defmodule Simon.Node do
         from,
         resp
       )
-      Logger.debug([fun: "prepare_ok", etries_to_commit: [{:write, v}], old_commit_num: state.commit_num, new_commit_num: state.commit_num + 1])
+      Logger.debug([fun: "prepare_ok", entries_to_commit: [{:write, v}], old_commit_num: state.commit_num, new_commit_num: state.commit_num + 1])
       {:noreply, %State{state |
         prepare_ok_buf: Map.put(
           state.prepare_ok_buf,
