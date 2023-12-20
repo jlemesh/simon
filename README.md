@@ -4,9 +4,7 @@ Simon is a VSR.
 
 ## TODOs
 
-- fix syn registration (sometimes one node fails to register)
-- view change
-- reconfiguration
+- send commit when no requests from client
 
 ## Links
 

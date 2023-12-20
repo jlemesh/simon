@@ -1,140 +1,179 @@
 ------------------------------- MODULE Simon -------------------------------
 EXTENDS Integers, Sequences, FiniteSets, TLC
-CONSTANT Nodes, Values, NilValue
-VARIABLE reg, wsn, reqsn, requests, lw, write_buf
-
-AllValues == Values \cup {NilValue}
+CONSTANT Nodes, Values
+VARIABLE requests, view_num, replica_num, op_num, log, commit_num, config, storage
 
 InitRequests ==
-    [type : {"init_write"}, receiver: Nodes, value: Values]
-    \union [type : {"init_read"}, receiver: Nodes]
+    [type : {"write"}, receiver: Nodes, value: Values, client_id: {0}, req_num: 0..1]
 
 Requests == 
     InitRequests
-    \union [type : {"read_req"}, receiver: Nodes, sender: Nodes, reqsn: 0..5]
-    \union [type : {"ack_read_req"}, receiver: Nodes, sender: Nodes, reqsn: 0..5, wsn: 0..5, reg: Seq(Values \cup {NilValue}), lw: Nodes]
-    \union [type : {"write"}, receiver: Nodes, sender: Nodes, reqsn: 0..5, v: AllValues, wsn: 0..5, lw: Nodes]
-    \union [type : {"ack_write"}, receiver: Nodes, sender: Nodes, reqsn: 0..5]
-    \union [type : {"write_req"}, receiver: Nodes, sender: Nodes, reqsn: 0..5]
-    \union [type : {"ack_write_req"}, receiver: Nodes, sender: Nodes, reqsn: 0..5, wsn: 0..5]
+    \union [type : {"prepare"}, receiver: Nodes, sender: Nodes, view_num: 0..1, request: InitRequests, op_num: 0..2, commit_num: 0..2]
+    \union [type : {"prepare_ok"}, receiver: Nodes, sender: Nodes, view_num: 0..1, op_num: 0..2, replica_num: 0..2]
+    \union [type : {"get_state"}, receiver: Nodes, sender: Nodes, view_num: 0..1, commit_num: 0..2]
+    \union [type : {"new_state"}, receiver: Nodes, sender: Nodes, view_num: 0..1, log: Seq(InitRequests), op_num: 0..2, commit_num: 0..2]
 
 TypeOK ==
-  /\ reg \in [Nodes -> Seq(AllValues)]
-  /\ wsn \in [Nodes -> Nat]
-  /\ reqsn \in [Nodes -> Nat]
   /\ requests \subseteq Requests
+  /\ view_num \in [Nodes -> Nat]
+  /\ replica_num \in [Nodes -> Nat]
+  /\ op_num \in [Nodes -> Nat]
+  /\ log \in [Nodes -> Seq(InitRequests)]
+  /\ commit_num \in [Nodes -> Nat]
+  /\ config \in [Nodes -> Seq(Nodes)]
+  /\ storage \in [Nodes -> Seq(Values)]
 
-MaxRequest(S) == CHOOSE x \in S : \A y \in S : y.wsn <= x.wsn
+IsPrimary(replica, view) == (view % Cardinality(Nodes))  = replica
 
-MinRequest(S) == CHOOSE x \in S : \A y \in S : y.wsn >= x.wsn
+GetPrimary(view, node_config) == node_config[view % Cardinality(Nodes)]
 
-RequestsOfType(type, n) == {req \in requests: req.receiver = n /\ req.type = type /\ req.reqsn = reqsn[n]}
+IsInjective(s) == \A i, j \in DOMAIN s: (s[i] = s[j]) => (i = j)
 
-Last(seq) == Head(SubSeq(seq, Len(seq), Len(seq)))
+SetToSeq(S) == CHOOSE f \in [1..Cardinality(S) -> S] : IsInjective(f)
 
-InitRead(n) ==
-    \E r \in requests:
-        /\ r.type = "init_read"
-        /\ r.receiver = n
-        /\ requests' = (requests \ {r})
-            \cup {[type|-> "read_req", receiver |-> no, sender |-> n, reqsn |-> reqsn[n] + 1] : no \in Nodes}
-        /\ reqsn' = [reqsn EXCEPT ![n] = reqsn[n] + 1]
-        /\ UNCHANGED <<reg, wsn, lw, write_buf>>
-
-InitWrite(n) ==
-  \E r \in requests:
-    /\ r.type = "init_write"
-    /\ r.receiver = n
-    /\ requests' = (requests \ {r})
-        \cup {[type|-> "write_req", receiver |-> no, sender |-> n, reqsn |-> reqsn[n] + 1] : no \in Nodes}
-    /\ reqsn' = [reqsn EXCEPT ![n] = reqsn[n] + 1]
-    /\ write_buf' = [write_buf EXCEPT ![n] = r.value]
-    /\ UNCHANGED <<reg, wsn, lw>>
+PrepareOKReq(n, op) == {r \in requests: r.type = "prepare_ok" /\ r.receiver = n /\ r.op_num = op }
 
 Write(n) ==
     \E r \in requests:
         /\ r.type = "write"
         /\ r.receiver = n
-        /\ requests' = (requests \ {r}) \cup {[type|-> "ack_write", receiver |-> r.sender, sender |-> n, reqsn |-> r.reqsn]}
-        /\ wsn' = IF r.wsn > wsn[n] THEN [wsn EXCEPT ![n] = r.wsn] ELSE wsn
-        /\ reg' = IF r.wsn > wsn[n] THEN [reg EXCEPT ![n] = reg[n][r.wsn] :> r.v] ELSE reg
-        /\ lw' = IF r.wsn > wsn[n] THEN [lw EXCEPT ![n] = r.lw] ELSE lw
-        /\ UNCHANGED <<reqsn, write_buf>>
-
-ReadReq(n) ==
-    \E r \in requests:
-        /\ r.type = "read_req"
-        /\ r.receiver = n
+        /\ GetPrimary(view_num[n], config[n]) = n
+        /\ op_num' = [op_num EXCEPT ![n] = op_num[n] + 1]
+        /\ log' = [log EXCEPT ![n] = Append(log[n], r)]
         /\ requests' = (requests \ {r})
-            \cup {[type|-> "ack_read_req", receiver |-> r.sender, sender |-> n, reqsn |-> reqsn[n], wsn |-> wsn[n], lw |-> n, reg |-> reg[n]]}
-        /\ UNCHANGED <<reg, wsn, reqsn, lw, write_buf>>
+            \cup {[type|-> "prepare", 
+            receiver |-> no,
+            sender |-> n,
+            view_num |-> view_num[n],
+            op_num |-> op_num[n] + 1,
+            commit_num |-> commit_num[n],
+            request |-> r] : no \in Nodes}
+        /\ UNCHANGED <<view_num, replica_num, commit_num, config, storage>>
 
-WriteReq(n) ==
-    \E r \in requests:
-        /\ r.type = "write_req"
-        /\ r.receiver = n
-        /\ requests' = (requests \ {r})
-            \cup {[type|-> "ack_write_req", receiver |-> r.sender, sender |-> n, reqsn |-> reqsn[n], wsn |-> wsn[n]]}
-        /\ UNCHANGED <<reg, wsn, reqsn, lw, write_buf>>
+Prepare0(n) ==
+  \E r \in requests:
+    /\ r.type = "prepare"
+    /\ r.receiver = n
+    /\ GetPrimary(view_num[n], config[n]) # n
+    /\ op_num[n] < r.op_num - 1
+    /\ op_num' = [op_num EXCEPT ![n] = r.commit_num]
+    /\ requests' = requests \cup {[type|-> "get_state",
+        receiver |-> GetPrimary(view_num[n], config[n]), 
+        sender |-> n, 
+        view_num |-> view_num[n],
+        commit_num |-> commit_num[n]]}
+    /\ UNCHANGED <<view_num, replica_num, config, commit_num, log, storage>>
 
-AckReadReq(n) ==
-    /\ Cardinality(RequestsOfType("ack_read_req", n)) > Cardinality(Nodes) \div 2
-    /\ LET max_req == MaxRequest(RequestsOfType("ack_read_req", n))
-        min_req == MinRequest(RequestsOfType("ack_read_req", n))
-        IN requests' = (requests \ RequestsOfType("ack_read_req", n))
-        \cup {[type|-> "write", 
-            receiver |-> no, 
-            sender |-> n, 
-            reqsn |-> reqsn[max_req.sender] + 1, 
-            v |-> max_req.reg[x + 1], 
-            wsn |-> x, 
-            lw |-> max_req.lw] : no \in Nodes, x \in min_req.wsn..max_req.wsn}
-    /\ UNCHANGED <<reg, wsn, reqsn, lw, write_buf>>
+Prepare1(n) ==
+  \E r \in requests:
+    /\ r.type = "prepare"
+    /\ r.receiver = n
+    /\ GetPrimary(view_num[n], config[n]) # n
+    /\ op_num[n] >= r.op_num - 1
+    /\ Len(log[n]) > r.commit_num
+    /\ commit_num[n] < r.commit_num
+    /\ log' = [log EXCEPT ![n] = Append(log[n], r.request)]
+    /\ op_num' = [op_num EXCEPT ![n] = r.op_num]
+    /\ commit_num' = [commit_num EXCEPT ![n] = r.commit_num]
+    /\ storage' = [storage EXCEPT ![n] = Append(storage[n], log[n][r.commit_num].value)]
+    /\ requests' = (requests \ {r})
+        \cup {[type|-> "prepare_ok",
+        receiver |-> GetPrimary(view_num[n], config[n]), 
+        sender |-> n, 
+        view_num |-> view_num[n],
+        op_num |-> r.op_num,
+        replica_num |-> replica_num[n]]}
+    /\ UNCHANGED <<view_num, replica_num, config>>
 
-AckWriteReq(n) ==
-    /\ Cardinality(RequestsOfType("ack_write_req", n)) > Cardinality(Nodes) \div 2
-    /\ LET max_req == MaxRequest(RequestsOfType("ack_write_req", n))
-        min_req == MinRequest(RequestsOfType("ack_write_req", n))
-        IN requests' = (requests \ RequestsOfType("ack_write_req", n))
-        \cup {[type|-> "write", 
-            receiver |-> no, 
-            sender |-> n, 
-            reqsn |-> reqsn[max_req.sender] + 1, 
-            v |-> max_req.reg[x + 1], 
-            wsn |-> x, 
-            lw |-> max_req.lw] : no \in Nodes, x \in min_req.wsn..max_req.wsn}
-        \cup {[type|-> "write", 
-            receiver |-> no, 
-            sender |-> n, 
-            reqsn |-> reqsn[n] + 1, 
-            v |-> write_buf[n], 
-            wsn |-> max_req.wsn + 1, 
-            lw |-> max_req.lw] : no \in Nodes}
-    /\ write_buf' = [write_buf EXCEPT ![n] = NilValue]
-    /\ UNCHANGED <<reg, wsn, reqsn, lw>>
+Prepare2(n) ==
+  \E r \in requests:
+    /\ r.type = "prepare"
+    /\ r.receiver = n
+    /\ GetPrimary(view_num[n], config[n]) # n
+    /\ op_num[n] >= r.op_num - 1
+    /\ Len(log[n]) > r.commit_num
+    /\ log' = [log EXCEPT ![n] = Append(log[n], r.request)]
+    /\ op_num' = [op_num EXCEPT ![n] = r.op_num]
+    /\ commit_num' = [commit_num EXCEPT ![n] = r.commit_num]
+    /\ requests' = (requests \ {r})
+        \cup {[type|-> "prepare_ok",
+        receiver |-> GetPrimary(view_num[n], config[n]), 
+        sender |-> n, 
+        view_num |-> view_num[n],
+        op_num |-> r.op_num,
+        replica_num |-> replica_num[n]]}
+    /\ UNCHANGED <<view_num, replica_num, config, storage>>
 
-AckWrite(n) ==
-    /\ Cardinality(RequestsOfType("ack_write", n)) > Cardinality(Nodes) \div 2
-    /\ requests' = (requests \ RequestsOfType("ack_write", n))
-    /\ UNCHANGED <<reg, wsn, reqsn, lw, write_buf>>
+Prepare3(n) ==
+  \E r \in requests:
+    /\ r.type = "prepare"
+    /\ r.receiver = n
+    /\ GetPrimary(view_num[n], config[n]) # n
+    /\ op_num[n] >= r.op_num - 1
+    /\ Len(log[n]) <= r.commit_num
+    /\ log' = [log EXCEPT ![n] = Append(log[n], r.request)]
+    /\ op_num' = [op_num EXCEPT ![n] = r.op_num]
+    /\ requests' = (requests \ {r})
+        \cup {[type|-> "prepare_ok",
+        receiver |-> GetPrimary(view_num[n], config[n]), 
+        sender |-> n, 
+        view_num |-> view_num[n],
+        op_num |-> r.op_num,
+        replica_num |-> replica_num[n]]}
+    /\ UNCHANGED <<view_num, replica_num, config, commit_num, storage>>
+
+PrepareOK(n) ==
+  \E r \in requests:
+    /\ r.type = "prepare_ok"
+    /\ r.receiver = n
+    /\ GetPrimary(view_num[n], config[n]) = n
+    /\ Cardinality(PrepareOKReq(n, r.op_num)) > Cardinality(Nodes) \div 2
+    /\ storage' = [storage EXCEPT ![n] = Append(storage[n], log[n][r.op_num].value)]
+    /\ commit_num' = [commit_num EXCEPT ![n] = commit_num[n] + 1]
+    /\ requests' = (requests \ {r})
+    /\ UNCHANGED <<view_num, replica_num, op_num, log, config>>
+
+GetState(n) ==
+  \E r \in requests:
+    /\ r.type = "get_state"
+    /\ r.receiver = n
+    /\ requests' = (requests \ {r})
+        \cup {[type|-> "new_state",
+        receiver |-> r.sender, 
+        sender |-> n, 
+        view_num |-> view_num[n],
+        log |-> SubSeq(log[n], r.commit_num + 1, Len(log[n])),
+        op_num |-> op_num[n],
+        commit_num |-> commit_num[n]]}
+    /\ UNCHANGED <<view_num, replica_num, op_num, log, config, commit_num, storage>>
+
+NewState(n) ==
+  \E r \in requests:
+    /\ r.type = "new_state"
+    /\ r.receiver = n
+    /\ storage' = [storage EXCEPT ![n] = log[n] \o {x.value: x \in SubSeq(r.log, 1, r.commit_num - commit_num[n])}]
+    /\ commit_num' = [commit_num EXCEPT ![n] = r.commit_num]
+    /\ log' = [log EXCEPT ![n] = log[n] \o r.log]
+    /\ op_num' = [op_num EXCEPT ![n] = r.op_num]
+    /\ requests' = (requests \ {r})
+    /\ UNCHANGED <<view_num, replica_num, config>>
 
 Init ==
-  /\ reg = [ n \in Nodes |-> <<NilValue>> ]
-  /\ wsn = [ n \in Nodes |-> 0 ]
-  /\ reqsn = [ n \in Nodes |-> 0 ]
+  /\ log = [ n \in Nodes |-> <<>> ]
+  /\ view_num = [ n \in Nodes |-> 1 ]
+  /\ replica_num = [ n \in Nodes |-> 0 ]
   /\ requests \in SUBSET InitRequests
-  /\ lw = [ n \in Nodes |-> n ]
-  /\ write_buf = [ n \in Nodes |-> NilValue ]
+  /\ op_num = [ n \in Nodes |-> 0 ]
+  /\ commit_num = [ n \in Nodes |-> 0 ]
+  /\ config = [ n \in Nodes |-> SetToSeq(Nodes) ]
+  /\ storage = [ n \in Nodes |-> <<>> ]
 
-Next == \E n \in Nodes : InitRead(n) \/ ReadReq(n) \/ AckReadReq(n) \/ AckWrite(n) \/ Write(n) \/ InitWrite(n)
+Next == \E n \in Nodes : Write(n) \/ Prepare0(n) \/ Prepare1(n) \/ Prepare2(n) \/ Prepare3(n) \/ PrepareOK(n) \/ GetState(n) \/ NewState(n)
 
-Spec == Init /\ [][Next]_<<reg, wsn, reqsn, requests, lw, write_buf>> /\ WF_<<reg, wsn, reqsn, requests, lw, write_buf>>(Next)
+Spec == Init /\ [][Next]_<<requests, view_num, replica_num, op_num, log, commit_num, config, storage>> /\ WF_<<requests, view_num, replica_num, op_num, log, commit_num, config, storage>>(Next)
 
-Consistent == \A n, s \in Nodes: reg[n] = reg[s]
+Consistent == \A n, s \in Nodes: log[n] = log[s]
 
 EventuallyConsistent == <>[]Consistent
 
 =============================================================================
-\* Modification History
-\* Last modified Sat Oct 14 20:39:36 EEST 2023 by jelizaveta
-\* Created Sat Oct 07 20:42:41 EEST 2023 by jelizaveta
