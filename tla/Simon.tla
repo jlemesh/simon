@@ -33,6 +33,8 @@ SetToSeq(S) == CHOOSE f \in [1..Cardinality(S) -> S] : IsInjective(f)
 
 PrepareOKReq(n, op) == {r \in requests: r.type = "prepare_ok" /\ r.receiver = n /\ r.op_num = op }
 
+Range(f) == {f[x]: x \in DOMAIN f}
+
 Write(n) ==
     \E r \in requests:
         /\ r.type = "write"
@@ -57,7 +59,7 @@ Prepare0(n) ==
     /\ GetPrimary(view_num[n], config[n]) # n
     /\ op_num[n] < r.op_num - 1
     /\ op_num' = [op_num EXCEPT ![n] = r.commit_num]
-    /\ requests' = requests \cup {[type|-> "get_state",
+    /\ requests' = (requests \ {r}) \cup {[type|-> "get_state",
         receiver |-> GetPrimary(view_num[n], config[n]), 
         sender |-> n, 
         view_num |-> view_num[n],
@@ -90,7 +92,7 @@ Prepare2(n) ==
     /\ r.type = "prepare"
     /\ r.receiver = n
     /\ GetPrimary(view_num[n], config[n]) # n
-    /\ op_num[n] >= r.op_num - 1
+    /\ op_num[n] = r.op_num - 1
     /\ Len(log[n]) > r.commit_num
     /\ log' = [log EXCEPT ![n] = Append(log[n], r.request)]
     /\ op_num' = [op_num EXCEPT ![n] = r.op_num]
@@ -151,9 +153,10 @@ NewState(n) ==
   \E r \in requests:
     /\ r.type = "new_state"
     /\ r.receiver = n
-    /\ storage' = [storage EXCEPT ![n] = log[n] \o {x.value: x \in SubSeq(r.log, 1, r.commit_num - commit_num[n])}]
+    /\ r.op_num > op_num[n]
+    /\ storage' = [storage EXCEPT ![n] = storage[n] \o SetToSeq({x.value: x \in Range(SubSeq(r.log, 1, r.commit_num - commit_num[n]))})]
     /\ commit_num' = [commit_num EXCEPT ![n] = r.commit_num]
-    /\ log' = [log EXCEPT ![n] = log[n] \o r.log]
+    /\ log' = [log EXCEPT ![n] = log[n] \o SubSeq(r.log, op_num[n]+1, Len(r.log))]
     /\ op_num' = [op_num EXCEPT ![n] = r.op_num]
     /\ requests' = (requests \ {r})
     /\ UNCHANGED <<view_num, replica_num, config>>
